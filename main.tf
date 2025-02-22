@@ -5,7 +5,7 @@ provider "google" {
 
 resource "google_container_cluster" "gke_cluster" {
   name     = "wingie-case-gke-cluster"
-  location = "europe-west1"
+  location = "europe-west1-b"
 
   remove_default_node_pool = true
   initial_node_count       = 1
@@ -20,7 +20,7 @@ resource "google_container_cluster" "gke_cluster" {
 resource "google_container_node_pool" "main_pool" {
   name       = "main-pool"
   cluster    = google_container_cluster.gke_cluster.id
-  location   = "europe-west1"
+  location   = "europe-west1-b"
   node_count = 1
 
   node_config {
@@ -35,7 +35,7 @@ resource "google_container_node_pool" "main_pool" {
 resource "google_container_node_pool" "application_pool" {
   name       = "application-pool"
   cluster    = google_container_cluster.gke_cluster.id
-  location   = "europe-west1"
+  location   = "europe-west1-b"
 
   autoscaling {
     min_node_count = 1
