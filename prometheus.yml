@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "kubernetes-api-server"
+    static_configs:
+      - targets: ["safety is important"]
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true  # Skip TLS verification if self-signed
+    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
